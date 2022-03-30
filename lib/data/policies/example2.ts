@@ -13,7 +13,7 @@ export const policy: InlinePolicy = {
     Version: '2012-10-17',
     Statement: [
         {
-            Sid: 'ManageEc2',
+            Sid: 'TestManageEc2',
             Effect: 'Allow',
             Action: [
                 'ec2:RebootInstances',
@@ -23,7 +23,7 @@ export const policy: InlinePolicy = {
             Resource: '*',
         },
         {
-            Sid: 'AllowS3Objects',
+            Sid: 'TestAllowS3Objects',
             Effect: 'Allow',
             Action: [
                 's3:PutObject',
