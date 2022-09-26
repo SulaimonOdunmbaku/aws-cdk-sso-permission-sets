@@ -4,9 +4,13 @@ import { SetWithInlinePolicy, SetWithManagedPolicy } from '../types';
  * Import all of the policy files here, then add the configuration below
  */
 import { policy as denyAdminPolicy } from './policies/denyAdmin';
-//import { policy as examplePolicy2 } from './policies/example2';
+import { policy as SREPermissionForProdAcctsPolicy } from './policies/SREPermissionForProdAccts';
+import { policy as ProdAcctBillingAdminPolicy} from './policies/ProdAcctBillingAdmin';
+import { policy as SessionManagerUserPolicy} from './policies/SessionManagerUser';
+import { policy as DBPermissionForTestDevAcctPolicy} from './policies/DBPermissionForTestDevAcct';
+import { policy as DBPermissionForITAcctPolicy} from './policies/DBPermissionForITAcct';
 
-/**
+/*
  * Configuration for each Permission Set.
  */
 export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
@@ -21,9 +25,10 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSAuditAccountAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
-            'arn:aws:iam::aws:policy/AdministratorAccess', 
+            'arn:aws:iam::aws:policy/AdministratorAccess',
         ],
         // Custom Inline Policy JSON
         inlinePolicy: denyAdminPolicy,
@@ -38,6 +43,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSAuditAccountReadOnly',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/ReadOnlyAccess',
@@ -55,6 +61,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess',
@@ -64,7 +71,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'QAAcctAdmin',
         description: 'Controlled Admin right in AWS QA account',
-        sessionDuration: 4,
+        sessionDuration: 12,
         accounts: [
             'awsqa',
         ],
@@ -75,6 +82,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
             'AWSDataWebTeam',
             'AWSReleaseTeam',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess', 
@@ -85,13 +93,14 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'QAAcctReadOnly',
         description: 'Read-Only right in AWS QA account',
-        sessionDuration: 8,
+        sessionDuration: 12,
         accounts: [
             'awsqa',
         ],
         groups: [
             'AWSQAAccountReadOnly',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/ReadOnlyAccess',
@@ -101,7 +110,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'QAAcctAWSAdmin',
         description: 'Full admin right in AWS QA account',
-        sessionDuration: 4,
+        sessionDuration: 12,
         accounts: [
             'awsqa',
         ],
@@ -109,6 +118,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess',
@@ -117,13 +127,14 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'QAAcctDBAdmin',
         description: 'DBA access in AWS QA account',
-        sessionDuration: 8,
+        sessionDuration: 12,
         accounts: [
             'awsqa',
         ],
         groups: [
             'AWSDBATeam',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/job-function/DatabaseAdministrator',
@@ -134,13 +145,14 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'DNAcctAWSAdmin',
         description: 'Full admin right in Dustin Nulf account',
-        sessionDuration: 4,
+        sessionDuration: 12,
         accounts: [
             'dustinnulf',
         ],
         groups: [
             'AWSAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess',
@@ -150,7 +162,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'DevAcctAdmin',
         description: 'Controlled Admin right in AWS Dev account',
-        sessionDuration: 4,
+        sessionDuration: 12,
         accounts: [
             'awsdev',
         ],
@@ -161,6 +173,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
             'AWSDataWebTeam',
             'AWSReleaseTeam',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess', 
@@ -171,13 +184,14 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'DevAcctReadOnly',
         description: 'Read-Only right in AWS Dev account',
-        sessionDuration: 8,
+        sessionDuration: 12,
         accounts: [
             'awsdev',
         ],
         groups: [
             'AWSDevAccountReadOnly',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/ReadOnlyAccess',
@@ -187,7 +201,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'DevAcctAWSAdmin',
         description: 'Full admin right in AWS Dev account',
-        sessionDuration: 4,
+        sessionDuration: 12,
         accounts: [
             'awsdev',
         ],
@@ -195,6 +209,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess',
@@ -203,13 +218,14 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'DevAcctDBAdmin',
         description: 'DBA access in AWS Dev account',
-        sessionDuration: 8,
+        sessionDuration: 12,
         accounts: [
             'awsdev',
         ],
         groups: [
             'AWSDBATeam',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/job-function/DatabaseAdministrator',
@@ -228,23 +244,25 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
             'AWSITAccountAdmins',
             'AWSITTeam',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess', 
         ],
         // Custom Inline Policy JSON
-        inlinePolicy: denyAdminPolicy,
+        inlinePolicy: denyAdminPolicy
     },
     {
         name: 'ITAcctReadOnly',
         description: 'Read-Only right in AWS IT account',
-        sessionDuration: 8,
+        sessionDuration: 4,
         accounts: [
             'awsit',
         ],
         groups: [
             'AWSITAccountReadOnly',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/ReadOnlyAccess',
@@ -262,10 +280,31 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess',
         ],
+    },
+    {
+        name: 'ITAcctDBAdmin',
+        description: 'DBA access in IT account',
+        sessionDuration: 4,
+        accounts: [
+            'awsit',
+        ],
+        groups: [
+            'AWSDBATeam',
+        ],
+        users: [],
+        // List of AWS Managed Policy Arns
+        managedPolicies: [
+            //'arn:aws:iam::aws:policy/job-function/DatabaseAdministrator',
+            'arn:aws:iam::aws:policy/ReadOnlyAccess',
+            'arn:aws:iam::aws:policy/AWSSupportAccess',
+        ],
+        // Custom Inline Policy JSON
+        inlinePolicy: DBPermissionForITAcctPolicy,
     },
     //Permission Sets in AWS Production account.
     {
@@ -278,6 +317,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSProdAccountAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess', 
@@ -288,13 +328,15 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'ProdAcctReadOnly',
         description: 'Read-Only right in AWS Production account',
-        sessionDuration: 8,
+        sessionDuration: 4,
         accounts: [
             'awsprod',
         ],
         groups: [
             'AWSProdAccountReadOnly',
+            'AWSReleaseTeam',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/ReadOnlyAccess',
@@ -312,6 +354,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess',
@@ -321,7 +364,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'DWEDevAcctAdmin',
         description: 'Controlled Admin right in DataWeb Dev account',
-        sessionDuration: 4,
+        sessionDuration: 12,
         accounts: [
             'datawebdev',
         ],
@@ -332,6 +375,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
             'AWSDataWebTeam',
             'AWSReleaseTeam',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess', 
@@ -342,13 +386,14 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'DWEDevAcctReadOnly',
         description: 'Read-Only right in DataWeb Dev account',
-        sessionDuration: 8,
+        sessionDuration: 12,
         accounts: [
             'datawebdev',
         ],
         groups: [
             'AWSDWEDevAccountReadOnly',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/ReadOnlyAccess',
@@ -358,7 +403,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'DWEDevAcctAWSAdmin',
         description: 'Full admin right in DataWeb Dev account',
-        sessionDuration: 4,
+        sessionDuration: 12,
         accounts: [
             'datawebdev',
         ],
@@ -366,6 +411,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess',
@@ -374,13 +420,14 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'DWEDevAcctDBAdmin',
         description: 'DBA access in DataWeb Dev account',
-        sessionDuration: 8,
+        sessionDuration: 12,
         accounts: [
             'datawebdev',
         ],
         groups: [
             'AWSDBATeam',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/job-function/DatabaseAdministrator',
@@ -398,6 +445,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSDWEProdAccountAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess', 
@@ -408,13 +456,15 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'DWEProdAcctReadOnly',
         description: 'Read-Only right in DataWeb Production account',
-        sessionDuration: 8,
+        sessionDuration: 4,
         accounts: [
             'datawebprod',
         ],
         groups: [
             'AWSDWEProdAccountReadOnly',
+            'AWSReleaseTeam',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/ReadOnlyAccess',
@@ -432,10 +482,87 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess',
         ],
+    },
+    //Permission Sets in AWS Test Dev account.
+    {
+        name: 'AWSTestDevAcctAdmin',
+        description: 'Controlled Admin right in AWS Test Dev account',
+        sessionDuration: 12,
+        accounts: [
+            'awstestdev',
+        ],
+        groups: [
+            'AWSTestDevAccountAdmins',
+            'AWSAssessmentTeam',
+            'AWSPlatformDevTeam',
+            'AWSReleaseTeam',
+        ],
+        users: [],
+        // List of AWS Managed Policy Arns
+        managedPolicies: [
+            'arn:aws:iam::aws:policy/AdministratorAccess', 
+        ],
+        // Custom Inline Policy JSON
+        inlinePolicy: denyAdminPolicy,
+    },
+    {
+        name: 'AWSTestDevAcctReadOnly',
+        description: 'Read-Only right in AWS Test Dev account',
+        sessionDuration: 12,
+        accounts: [
+            'awstestdev',
+        ],
+        groups: [
+            'AWSTestDevAccountReadOnly',
+        ],
+        users: [],
+        // List of AWS Managed Policy Arns
+        managedPolicies: [
+            'arn:aws:iam::aws:policy/ReadOnlyAccess',
+            'arn:aws:iam::aws:policy/AWSSupportAccess',
+        ],
+    },
+    {
+        name: 'AWSTestDevAcctAWSAdmin',
+        description: 'Full admin right in AWS Test Dev account',
+        sessionDuration: 12,
+        accounts: [
+            'awstestdev',
+        ],
+        //includeAllAccounts: true,
+        groups: [
+            'AWSAdmins',
+        ],
+        users: [],
+        // List of AWS Managed Policy Arns
+        managedPolicies: [
+            'arn:aws:iam::aws:policy/AdministratorAccess',
+        ],
+    },
+    {
+        name: 'AWSTestDevAcctDBAdmin',
+        description: 'DBA access in AWS Test Dev account',
+        sessionDuration: 12,
+        accounts: [
+            'awstestdev',
+        ],
+        groups: [
+            'AWSDBATeam',
+        ],
+        users: [],
+        // List of AWS Managed Policy Arns
+        managedPolicies: [
+            'arn:aws:iam::aws:policy/job-function/DatabaseAdministrator',
+            'arn:aws:iam::aws:policy/AWSSupportAccess',
+            'arn:aws:iam::aws:policy/AmazonEC2FullAccess',
+        ],
+        // Custom Inline Policy JSON
+        inlinePolicy: DBPermissionForTestDevAcctPolicy,
     },
     //Permission Sets in Log Archive account.
     {
@@ -448,6 +575,7 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSLogArchiveAccountAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess', 
@@ -458,13 +586,14 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
     {
         name: 'LogArchAcctReadOnly',
         description: 'Read-Only right in Log Archive account',
-        sessionDuration: 8,
+        sessionDuration: 4,
         accounts: [
             'logarchive',
         ],
         groups: [
             'AWSLogArchiveAccountReadOnly',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/ReadOnlyAccess',
@@ -482,11 +611,105 @@ export const permisssionSets: (SetWithInlinePolicy | SetWithManagedPolicy)[] = [
         groups: [
             'AWSAdmins',
         ],
+        users: [],
         // List of AWS Managed Policy Arns
         managedPolicies: [
             'arn:aws:iam::aws:policy/AdministratorAccess',
         ],
     },
+    //SRE Permission Sets in AWS Prod and DataWeb Prod accounts. 
+    {
+        name: 'SREWritePersmissionForProdAccts',
+        description: 'SRE Permission in AWS Prod and DataWeb Prod accounts',
+        sessionDuration: 4,
+        accounts: [
+            'awsprod',
+            'datawebprod',
+        ],
+        groups: [],
+        users: [
+            'colinschlotter',
+            'davidpearson',
+        ],
+        // List of AWS Managed Policy Arns
+        managedPolicies: [
+            'arn:aws:iam::aws:policy/AmazonEC2FullAccess',
+            'arn:aws:iam::aws:policy/CloudWatchFullAccess',
+        ],
+        // Custom Inline Policy JSON
+        inlinePolicy: SREPermissionForProdAcctsPolicy,
+    },
+//SRE Permission Sets in AWS Prod and DataWeb Prod accounts. 
+    {
+        name: 'ProdAcctBillingAdmin',
+        description: 'Billing Admins in Prod Accounts',
+        sessionDuration: 4,
+        accounts: [
+            'awsprod',
+        ],
+        groups: [],
+        users: [
+            'johnjeffus',
+            'garywhite',
+            'zackterry',
+            'davidpearson',
+        ],
+        // List of AWS Managed Policy Arns
+        managedPolicies: [],
+        // Custom Inline Policy JSON
+        inlinePolicy: ProdAcctBillingAdminPolicy,
+    },
+    //AWSiStationManagementTeam group permission set
+    {
+        name: 'AllAcctAWSMgtAdmin',
+        description: 'Full admin right in all AWS accounts for CTO level',
+        sessionDuration: 4,
+        accounts: [
+            'audit',
+            'awsqa',
+            'dustinnulf',
+            'awsdev',
+            'awsit',
+            'awsprod',
+            'datawebdev',
+            'datawebprod',
+            'awstestdev',
+            'logarchive',
+        ],
+        groups: [
+            'AWSiStationManagementTeam',
+        ],
+        users: [],
+        // List of AWS Managed Policy Arns
+        managedPolicies: [
+            'arn:aws:iam::aws:policy/AdministratorAccess',
+        ],
+    },
+    {
+        name: 'AllAcctAWSMgtReadOnly',
+        description: 'Read-Only right in all AWS accounts for CTO level',
+        sessionDuration: 4,
+        accounts: [
+            'audit',
+            'awsqa',
+            'dustinnulf',
+            'awsdev',
+            'awsit',
+            'awsprod',
+            'datawebdev',
+            'datawebprod',
+            'awstestdev',
+            'logarchive',
+        ],
+        groups: [
+            'AWSiStationManagementTeam',
+        ],
+        users: [],
+        // List of AWS Managed Policy Arns
+        managedPolicies: [
+            'arn:aws:iam::aws:policy/ReadOnlyAccess',
+        ],
+    }
 ];
 
-export { environment, accountList, groupList } from './environment';
+export { environment, accountList, groupList, userList } from './environment';

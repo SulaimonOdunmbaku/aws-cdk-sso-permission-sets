@@ -16,6 +16,11 @@ export type Environment = {
     ssoInstanceArn: string,
 };
 
+export type UserList = {
+    //name: userid
+    [name: string]: string,
+};
+
 // Inline Policy ===========================================================
 
 type InlineStatement = {
@@ -43,6 +48,7 @@ type SetDefinition = {
     sessionDuration: number; // Hours
     accounts: Array<keyof AccountList>;
     groups: Array<keyof GroupList>;
+    users: Array<keyof UserList>;
     includeAllAccounts?: boolean;
 };
 

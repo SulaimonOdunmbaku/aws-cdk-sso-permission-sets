@@ -1,4 +1,4 @@
-import { Environment, AccountList, GroupList } from '../types';
+import { Environment, AccountList, GroupList, UserList } from '../types';
 
 /**
  * The Organisation master account (where the SSO configuration resides)
@@ -21,6 +21,7 @@ export const accountList: AccountList = {
     awsprod: '513352092963',
     datawebdev: '032478294214',
     datawebprod: '824196775661',
+    awstestdev: '106039341785',
     logarchive: '932521301820',
 };
 
@@ -28,27 +29,42 @@ export const accountList: AccountList = {
  * List of Groups we want to assign permission sets to
  */
 export const groupList: GroupList = {
-    AWSAuditAccountAdmins: '9a6711ca2c-81346acc-d162-4336-a2c1-38f56dc2efc3',
-    AWSAuditAccountReadOnly: '9a6711ca2c-4d19fb43-b114-4316-b009-de87c6ac537a',
-    AWSAdmins: '9a6711ca2c-aaab1610-cc75-4b2a-9913-8230c7ba4281',
-    AWSQAAccountAdmins: '9a6711ca2c-3a40b5b2-f4ad-48c2-bbab-7ff7db0078a0',
-    AWSQAAccountReadOnly: '9a6711ca2c-6b7d6286-13d5-4197-bd3c-ebe326b99fd3',
-    AWSPlatformDevTeam: '9a6711ca2c-5763afe3-b767-47e1-91e8-911074137d41',
-    AWSInteractiveDevTeam: '9a6711ca2c-64ecc8c5-5765-4bad-b196-ddb24574f585',
-    AWSDataWebTeam: '9a6711ca2c-3389eae8-581c-4a96-9b8b-24a90269ca59',
-    AWSReleaseTeam: '9a6711ca2c-1ed91221-0634-44b3-a8ef-a0e568253f86',
-    AWSDBATeam: '9a6711ca2c-c5308cd8-3496-4198-9050-1196e25aac26',
-    AWSDevAccountAdmins: '9a6711ca2c-1bc95ebf-a432-49b8-a28f-29f5850877c1',
-    AWSDevAccountReadOnly: '9a6711ca2c-02c9c176-17fb-47b7-b283-043d9a565a13',
-    AWSITTeam:'9a6711ca2c-a04121d9-fb73-4e92-b8dc-56c8c246593a',
-    AWSITAccountAdmins: '9a6711ca2c-4fc44b0a-619b-4e47-af41-2dd6ad0bb7e4',
-    AWSITAccountReadOnly: '9a6711ca2c-f02a7025-ac44-41c4-8659-6ee289071e06',
-    AWSProdAccountAdmins: '9a6711ca2c-870f0b60-7fbc-4103-86a8-82acdb4cf61c',
-    AWSProdAccountReadOnly: '9a6711ca2c-0afd6f24-065a-4274-a7f7-85800986ce56',
-    AWSDWEDevAccountAdmins: '9a6711ca2c-3c0057e3-5696-4674-8eb2-31153fa805b1',
-    AWSDWEDevAccountReadOnly: '9a6711ca2c-fe6c79ae-db0a-47e5-9c26-2b80caaa3e43',
-    AWSDWEProdAccountAdmins: '9a6711ca2c-efc2252c-5dcd-4ba9-8f00-8a75c6a601bf',
-    AWSDWEProdAccountReadOnly: '9a6711ca2c-42cc1822-5949-4357-bbb0-801bef896ddd',
-    AWSLogArchiveAccountAdmins: '9a6711ca2c-3db019c6-65da-41e8-8734-5202bc8aa7a0',
-    AWSLogArchiveAccountReadOnly: '9a6711ca2c-367d423d-c924-4eb7-9f80-6a683c189a8b',
+    AWSAuditAccountAdmins: '9a6711ca2c-1e819f2f-7db2-46fe-bc9a-29dda4c556dd',
+    AWSAuditAccountReadOnly: '9a6711ca2c-9230e628-6237-4384-a958-716f782aabb0',
+    AWSAdmins: '9a6711ca2c-3b02fa27-e4e7-4f39-aa91-d7ac23bf39d0',
+    AWSQAAccountAdmins: '9a6711ca2c-4f2eab17-e19f-41be-8bf7-3bdaf302211a',
+    AWSQAAccountReadOnly: '9a6711ca2c-5f8fb926-687b-4db8-b44a-b6ef51fd3c69',
+    AWSPlatformDevTeam: '9a6711ca2c-a9cae469-69bf-4896-bedb-5c6e530090e5',
+    AWSInteractiveDevTeam: '9a6711ca2c-2284191b-b9ab-4733-8c19-68396a6cc7c3',
+    AWSDataWebTeam: '9a6711ca2c-f7a725b3-6f40-4585-8c6d-347241c1331d',
+    AWSReleaseTeam: '9a6711ca2c-0515836d-e692-492e-a701-eeae22b585ad',
+    AWSDBATeam: '9a6711ca2c-46805177-0e14-46b0-8f4a-58ec397ab359',
+    AWSDevAccountAdmins: '9a6711ca2c-7ac34bd0-6b83-46b2-a309-ce8c5442f53c',
+    AWSDevAccountReadOnly: '9a6711ca2c-6a740a06-388c-439c-aa46-29dcdca2fd99',
+    AWSITTeam:'9a6711ca2c-ed491b7a-a12a-4f4d-9f1d-79939f7d3e3a',
+    AWSITAccountAdmins: '9a6711ca2c-de75e718-a9ed-4e18-a47b-cf55f52b7aa2',
+    AWSITAccountReadOnly: '9a6711ca2c-3670831c-c0f0-4e1e-bd57-c48ee7912271',
+    AWSProdAccountAdmins: '9a6711ca2c-209ad488-4b7c-43fd-a29e-af885e1c16c3',
+    AWSProdAccountReadOnly: '9a6711ca2c-21c4d74c-ad7b-499b-95b6-a412cf3e1e16',
+    AWSDWEDevAccountAdmins: '9a6711ca2c-0275414d-aea8-4cb8-b07d-2352946c0276',
+    AWSDWEDevAccountReadOnly: '9a6711ca2c-a4e4cae8-90f2-4240-aafe-1cbe77df6496',
+    AWSDWEProdAccountAdmins: '9a6711ca2c-2dd2dd73-b937-4865-bc8c-9e9e614682a8',
+    AWSDWEProdAccountReadOnly: '9a6711ca2c-c695cf59-956a-4589-9b81-65db999b166c',
+    AWSTestDevAccountAdmins: '9a6711ca2c-dd09f8a6-5746-470a-8863-eb3d86e22d6d',
+    AWSTestDevAccountReadOnly: '9a6711ca2c-26964487-2ac9-4d84-8ba3-658c68aed84e',
+    AWSAssessmentTeam: '9a6711ca2c-c9d8641a-6503-4b66-bd50-30747c0cf05f',
+    AWSLogArchiveAccountAdmins: '9a6711ca2c-db872fef-5502-4766-b304-4a8d7f9eaed3',
+    AWSLogArchiveAccountReadOnly: '9a6711ca2c-3fdc94d3-4436-4774-be22-7c382383ddb9',
+    AWSiStationManagementTeam: '9a6711ca2c-d7de534c-c4e8-40a8-8702-da9399cf0496',
 };
+
+/**
+ * List of Users we want to assign permission sets to
+ */
+ export const userList: UserList = {
+    colinschlotter: '9a6711ca2c-2b0106a0-e92c-4632-8ad9-8a0662ff6c08',
+    davidpearson: '9a6711ca2c-1fb153dd-14df-4676-a0a2-948cea84f1d8',
+    johnjeffus: '9a6711ca2c-06e512a0-15b8-45d5-b003-c746cc0b87a1',
+    garywhite: '9a6711ca2c-d9dbf53b-b227-4af8-829a-7f46b13e8d8e',
+    zackterry: '9a6711ca2c-af782123-6e79-43a3-9a85-82ad1c67d8d8',
+ };

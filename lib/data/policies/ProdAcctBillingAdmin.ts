@@ -13,21 +13,13 @@ export const policy: InlinePolicy = {
     Version: '2012-10-17',
     Statement: [
         {
-            Sid: 'TestManageEc2',
+            Sid: 'ProdAccountsBillingAdminPermission',
             Effect: 'Allow',
             Action: [
-                'ec2:RebootInstances',
-                'ec2:StartInstances',
-                'ec2:StopInstances',
-            ],
-            Resource: '*',
-        },
-        {
-            Sid: 'TestAllowS3Objects',
-            Effect: 'Allow',
-            Action: [
-                's3:PutObject',
-                's3:GetObject',
+                'aws-portal:*',
+                'cur:*',
+                'ce:*',
+                'billingconductor:*',
             ],
             Resource: '*',
         },

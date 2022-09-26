@@ -5,7 +5,7 @@ import { CfnPermissionSet, CfnAssignment } from 'aws-cdk-lib/aws-sso';
 
 // Configuration files and polices from the data folder
 import {
-    environment, permisssionSets, groupList, accountList,
+    environment, permisssionSets, groupList, accountList, userList,
 } from './data';
 
 /**
@@ -24,7 +24,7 @@ export class SsoMgtStack extends Stack {
         // Create and Assign Permission set for each configuration
         permisssionSets.forEach((set) => {
             const {
-                name, description, sessionDuration, accounts, groups, managedPolicies, inlinePolicy, includeAllAccounts = false,
+                name, description, sessionDuration, accounts, groups, users, managedPolicies, inlinePolicy, includeAllAccounts = false,
             } = set;
 
             // Create the Permission Set
@@ -57,6 +57,17 @@ export class SsoMgtStack extends Stack {
                         targetId: accNum,
                         targetType: 'AWS_ACCOUNT',
                     });
+                });
+                users.forEach((user) => {
+                    const userId = userList[user];
+                    new CfnAssignment(this, `${name}_${accNum}_${user}_Assignment`, {
+                        instanceArn,
+                        permissionSetArn: permissionSet.attrPermissionSetArn,
+                        principalId: userId,
+                        principalType: 'USER',
+                        targetId: accNum,
+                        targetType: 'AWS_ACCOUNT', 
+                    });               
                 });
             });
         });

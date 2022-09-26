@@ -43,5 +43,25 @@ export const policy: InlinePolicy = {
             ],
             Resource: '*',
         },
+        /*{//Test Deny Any Other SSM Documents
+            Sid: 'DenyPermissionToUseNonApprovedSSMDocuments',
+            Effect: 'Deny',
+            Action: [
+                'ssm:StartSession',
+                'ssm:SendCommand' 
+            ],
+            Resource: [
+                "arn:aws:ec2:*:*:instance/*"
+            ],
+            Condition: {
+                'ForAnyValue:ArnNotEquals': {
+                    'aws:sourceArn': {
+                     'arn:aws:ec2:*:*:instance/*',
+                     'arn:aws:ssm:*:*:document/iStationSessionManagerRunShell',
+                     'arn:aws:ssm:*:*:document/iStationStartPortForwardingSession',
+                    }
+                }
+            }
+        },*/
     ],
 };

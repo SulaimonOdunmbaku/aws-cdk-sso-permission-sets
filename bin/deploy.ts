@@ -7,5 +7,7 @@ const { account, region } = environment;
 
 const app = new cdk.App();
 new SsoMgtStack(app, 'SsoMgtStack', {
+    stackName: 'SsoMgtStack',
+    description: 'This stack is used to deploy KMS key for Oracle DB encryption.',
     env: { account, region },
 });
